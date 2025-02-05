@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis for Financial News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            text-align: center;
+            overflow: hidden;
+        }
+        header {
+            padding: 20px;
+            font-size: 24px;
+            background: linear-gradient(to right, #141e30, #243b55);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-container {
+            margin: 50px auto;
+            width: 80%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background: #ff4b5c;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background: #ff1e3c;
+        }
+        #sentiment-result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animated {
+            animation: fadeInUp 1.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="animated">Financial News Sentiment Analysis</h1>
+    </header>
+    <main>
+        <section class="news-container animated">
+            <h2>Latest Financial News</h2>
+            <div class="news-content">
+                <!-- Dynamic News Articles Will Be Loaded Here -->
+            </div>
+        </section>
+        <button id="predict-btn" class="animated">Predict Sentiment</button>
+        <div id="sentiment-result" class="animated"></div>
+    </main>
+    <footer class="animated">
+        <p>&copy; 2025 Financial Insights</p>
+    </footer>
+    <script>
+        document.getElementById('predict-btn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('sentiment-result');
+            resultDiv.textContent = "Analyzing Sentiment...";
+            resultDiv.style.color = "#ff4b5c";
+            setTimeout(() => {
+                const sentiments = ["Positive", "Neutral", "Negative"];
+                const sentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
+                resultDiv.textContent = `Sentiment: ${sentiment}`;
+                resultDiv.style.color = sentiment === "Positive" ? "#2ecc71" : sentiment === "Negative" ? "#e74c3c" : "#f1c40f";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
