@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis for Financial News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .news-container {
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            padding: 15px;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 20px;
+        }
+
+        button.animated-button {
+            background-color: #1abc9c;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button.animated-button:hover {
+            background-color: #16a085;
+            transform: scale(1.1);
+        }
+
+        button.animated-button:active {
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            display: none;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Sentiment Analysis for Financial News</h1>
+            <p>Predict the sentiment of the latest financial news. Is it positive, negative, or neutral?</p>
+        </header>
+
+        <div class="news-container">
+            <textarea id="financialNews" placeholder="Enter the financial news here..."></textarea>
+            <button id="predictButton" class="animated-button">Predict Sentiment</button>
+            <div id="sentimentResult" class="result"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Financial Sentiment Analysis | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        document.getElementById("predictButton").addEventListener("click", function() {
+            const newsText = document.getElementById("financialNews").value.trim();
+
+            if (newsText === "") {
+                alert("Please enter some financial news for analysis.");
+                return;
+            }
+
+            // Simulate a delay for sentiment prediction (you can replace this with actual API integration)
+            document.getElementById("sentimentResult").style.display = "none";
+            document.getElementById("predictButton").textContent = "Analyzing...";
+
+            setTimeout(function() {
+                // Example random sentiment result for demonstration
+                const sentiment = ["Positive", "Negative", "Neutral"];
+                const result = sentiment[Math.floor(Math.random() * sentiment.length)];
+                
+                document.getElementById("sentimentResult").style.display = "block";
+                document.getElementById("sentimentResult").textContent = `Sentiment: ${result}`;
+                document.getElementById("predictButton").textContent = "Predict Sentiment";
+            }, 2000); // Simulate 2 seconds for sentiment analysis
+        });
+    </script>
+
+</body>
+</html>
