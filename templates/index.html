@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #1a1a1a;
+            background: rgba(173, 180, 183, 0.76);
             color: white;
             text-align: center;
             height: 100vh;
@@ -21,31 +21,29 @@
             position: relative;
         }
         .newspaper {
-            width: 300px;
-            height: 400px;
-            background: url('https://media.giphy.com/media/ROwhM7uP2HFOiHGBeA/giphy.gif') ;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://media0.giphy.com/media/ROwhM7uP2HFOiHGBeA/giphy.gif') no-repeat center center;
             background-size: cover;
-            position: absolute;
             cursor: pointer;
-            transition: transform 1s ease-in-out;
-            transform-origin: center;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            z-index: 10;
         }
         .newspaper.open {
-            animation: unfold 1s forwards;
-        }
-        @keyframes unfold {
-            0% { transform: scale(1) rotateY(0deg); }
-            50% { transform: scale(1.1) rotateY(90deg); }
-            100% { transform: scale(1) rotateY(180deg); opacity: 0; }
+            transform: scale(1.1) rotateY(180deg);
+            opacity: 0;
         }
         .container {
             display: none;
             margin: 20px auto;
             padding: 20px;
             width: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(62, 151, 50, 0.69);
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(28, 161, 68, 0.5);
             backdrop-filter: blur(10px);
             animation: fadeIn 1s ease-in-out;
         }
@@ -73,12 +71,18 @@
         document.addEventListener("DOMContentLoaded", function() {
             const newspaper = document.querySelector(".newspaper");
             const container = document.querySelector(".container");
+            const predictBtn = document.getElementById("predictBtn");
+
             newspaper.addEventListener("click", function() {
                 newspaper.classList.add("open");
                 setTimeout(() => {
                     newspaper.style.display = "none";
                     container.style.display = "block";
                 }, 1000);
+            });
+
+            predictBtn.addEventListener("click", function() {
+                window.location.href = "/predictpage";
             });
         });
     </script>
@@ -88,15 +92,15 @@
     <div class="container">
         <h1 class="title">Sentiment Analysis for Financial News</h1>
         <label for="newsInput">Enter Financial News Article:</label>
-        <textarea id="newsInput" class="news-animation" placeholder="Paste financial news article here..."></textarea>
+        <textarea id="newsInput" placeholder="Paste financial news article here..."></textarea>
         <div class="upload-section">
             <input type="file" id="uploadFile" accept=".txt,.pdf">
             <label for="uploadFile" class="upload-label"><i class="fas fa-upload"></i> Upload Article</label>
         </div>
-        <button id="analyzeBtn"><i class="fas fa-search"></i> Analyze Sentiment</button>
+        <button id="predictBtn"><i class="fas fa-chart-line"></i> Predict Sentiment</button>
         <button id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
         <div id="result" class="hidden">
-            <h2><i class="fas fa-poll"></i> Analysis Result:</h2>
+            <h2><i class="fas fa-poll"></i> Prediction Result:</h2>
             <p id="sentiment"></p>
         </div>
     </div>
